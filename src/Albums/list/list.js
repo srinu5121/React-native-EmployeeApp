@@ -23,9 +23,11 @@ class Albums extends Component {
         ? this.setState({ getAlbums, loader: false })
         : this.setState({ getAlbums: null, loader: false });
     });
+    // this.props.GetData()
   };
 
   render() {
+    console.log(this.props.Albums, 'albums')
     const { loader, getAlbums } = this.state;
 
     let data;
@@ -37,7 +39,7 @@ class Albums extends Component {
       data = (
         <View>
           {getAlbums.data.map(i => (
-            <Text;>{i.title}</Text>
+            <Text>{i.title}</Text>
           ))}
         </View>
       );

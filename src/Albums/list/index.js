@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getAlbums: albumActions.getAlbums
+  getAlbums: albumActions.getAlbums,
 };
 
 export default connect(

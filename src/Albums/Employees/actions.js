@@ -1,13 +1,14 @@
 import API from '@middleware';
 
-const url = 'https://rallycoding.herokuapp.com/api/music_album';
+const url = 'http://10.0.2.2:5000/api/Mongodb/people';
 const method = 'GET';
 
-export function getAlbums() {
+export function GetData() {
+  console.log("working in actions")
   return async dispatch => {
     const data = await API(url, method);
     dispatch({
-      type: 'GET_ALBUMS',
+      type: 'FETCH_EMP',
       data
     });
     return data;
