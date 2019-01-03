@@ -11,7 +11,8 @@ import AllEmployee from "@albums/Employees/AllEmployee";
 import EditEmployee from "@albums/editEmployee";
 import Department from "@albums/Departments/index"
 import DrawerButton from '@drawerButton';
-import DepEmployee from '@albums/Departments/DepartbasedEmp'
+import DepEmployee from '@albums/Departments/DepartbasedEmp';
+import Events from "@albums/Events/index"
 
 const defaultNavigationOptions = {
   headerStyle: {
@@ -31,7 +32,8 @@ const AlbumStack = createStackNavigator(
     AllEmployee:{screen: AllEmployee},
     EditEmployee:{screen: EditEmployee},
     Department:{screen:Department},
-    DepEmployee: {screen: DepEmployee}
+    DepEmployee: {screen: DepEmployee},
+    Events:{screen:Events}
   },
   { defaultNavigationOptions }
 );

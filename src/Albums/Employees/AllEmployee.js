@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {View, Text, TouchableHighlight, StyleSheet, DatePickerAndroid, ScrollView, TextInput, FlatList} from "react-native";
 import {Card, CardItem, Right } from "native-base";
+import Dialog, { DialogContent, DialogButton, dialogAnimation, SlideAnimation } from 'react-native-popup-dialog';
 import {GetData} from './actions';
 import {connect} from "react-redux";
 
@@ -10,7 +11,8 @@ class AllEmployee extends Component {
     super(props)
     this.state = {
       items:'',
-      isLoading:true
+      isLoading:true,
+      value:''
       // init:this.props.Employee.data ?
     }
   }
@@ -32,11 +34,11 @@ this.props.GetEmpData();
     console.log("testing" , text)
     var updatedList = this.props.Employee.data;
     updatedList = updatedList.filter(function(item){
-      return item.toLowerCase().search(
+      return item.name.toLowerCase().search(
         text.toLowerCase()) !== -1;
     });
     this.setState({items: updatedList});
-    // 
+    //
     // const newData = this.props.Employees.data.filter(item => {
     //   const names = item.name ? item.name.toUpperCase() : '';
     //   const textData = text ? text.toUpperCase() : '';
@@ -45,6 +47,12 @@ this.props.GetEmpData();
     //
     // this.setState({ items: newData, text });
 
+  }
+  handlePop(data){
+    this.setState({value:data, visible:true})
+  }
+  handleUnShown(){
+    this.setState({visible:false})
   }
   _renderItem = data => {
   console.log(data, "data")
@@ -62,7 +70,7 @@ this.props.GetEmpData();
 				<CardItem style={{ flex: 0.85 }}>
 						<View style={{ flexDirection: 'row' }}>
 							<View style={{ flexDirection: 'column', paddingLeft: 10, justifyContent: 'center' }}>
-								<Text style={{ color: '#157EFB', fontWeight: 'bold', fontSize: 15 }}>
+								<Text style={{ color: '#157EFB', fontWeight: 'bold', fontSize: 15 }} onPress = {()=> this.handlePop(data)}>
 									Name: {data && data.item ? data.item.name: null}
 								</Text>
                 <Text style={{ color: '#157EFB', fontWeight: 'bold', fontSize: 15 }}>
@@ -89,6 +97,21 @@ this.props.GetEmpData();
         placeholder="Search For Employees"
         onChangeText={(text) => this.handleSearch(text)}
       />
+      <Dialog
+    visible={this.state.visible}
+    actions={[
+      <DialogButton
+        text="OK"
+        onPress={() =>this.handleUnShown()}
+      />
+    ]}
+  >
+    <DialogContent>
+    <View style={{width:150, height:100}}>
+   <Text>{this.state.value ? this.state.value.name : null}</Text>
+   </View>
+    </DialogContent>
+  </Dialog>
       {this.state.items ? (
         <FlatList
         data={this.state.items ? this.state.items : null}

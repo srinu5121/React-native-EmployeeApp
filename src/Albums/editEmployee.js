@@ -10,6 +10,10 @@ var Deparments =  t.enums({
   Sales: "Sales",
   Others:"Others"
 });
+var Gender = t.enums({
+  Male:"Male",
+  Female: "Female"
+})
 // here we are: define your domain model
 var Person = t.struct({
   name: t.String,              // a required string
@@ -21,7 +25,8 @@ var Person = t.struct({
   phoneNumber:t.Number,
   location:t.String,
   birthDate: t.Date,
-  DateofJoining: t.Date
+  DateofJoining: t.Date,
+  gender: Gender
 
 });
 var options = {
@@ -31,6 +36,9 @@ var options = {
     },
     DateofJoining: {
       mode: 'date' // display the Date field as a DatePickerAndroid
+    },
+    gender: {
+      nullOption: {value: '', text: 'Choose your gender'}
     }
   }
 };

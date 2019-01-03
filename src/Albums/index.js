@@ -9,7 +9,7 @@ import {createBottomTabNavigator, createAppContainer} from "react-navigation";
 
 class Welcome extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Welcome',
+    title: 'Home',
     headerLeft: <DrawerButton navigation={navigation} />
   });
 
@@ -46,7 +46,7 @@ class Welcome extends Component {
         <CardItem>
             <View style={{flex: 1, flexDirection: 'row', padding:10, alignItems:"center"}}>
             <Icon name="bookmark" size={30} color="#800" />
-            <Text style={{marginLeft:25 }}>Events</Text>
+            <Text style={{marginLeft:25 }} onPress = {() => this.props.navigation.navigate('Events')}>Events</Text>
          </View>
          </CardItem>
          </Card>
